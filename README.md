@@ -10,7 +10,7 @@ You will create a Dungeons N Dragons Style game in the command line. The behavio
 ```java
 Your Team
 --------------------------------------------------------------------
-Orge (1)                Druid (2)               Wizard (3)      
+Orge (1)                CharacterTypes.Ghostface (2)               CharacterTypes.KendrickLamar (3)      
  - Health: 20 / 20       - Health: 10 / 10       - Health: 12 / 12
  - Attack: 9             - Attack: 8             - Attack: 4
  - Defense: 3            - Defense: 9            - Defense: 8
@@ -18,7 +18,7 @@ Orge (1)                Druid (2)               Wizard (3)
  
 Enemy Team
 ---------------------------------------------------------------------
-Warrior (1)             Paladin (2)             Rogue (3)      
+Warrior (1)             Paladin (2)             CharacterTypes.Nas (3)      
  - Health: 20 / 20       - Health: 10 / 10       - Health: 20 / 20
  - Attack: 4             - Attack: 10            - Attack: 7
  - Defense: 4            - Defense: 5            - Defense: 4
@@ -39,15 +39,15 @@ Attack enemy: 1
   6. The characters switch roles, the former defender becomes the attacker and vise versa. Steps 2-5 are repeated
 
 ```text
-Your Wizard attacks first!
-Your Wizard's attack: Base of 4 + Role of 3 = 7
+Your CharacterTypes.KendrickLamar attacks first!
+Your CharacterTypes.KendrickLamar's attack: Base of 4 + Role of 3 = 7
 Enemy Warrior's defense: Base of 4 + Role of 1 = 5
-Your Wizard deals 2 damage to the Enemy Warrior!
+Your CharacterTypes.KendrickLamar deals 2 damage to the Enemy Warrior!
 
 Enemy Warrior counterattacks!
 Enemy Warrior's attack: Base of 4 + Role of 5 = 9
-Your Wizard's defense: Base of 8 + Role of 2 = 10
-Enemy Warrior deals 0 damage to Your Wizard!
+Your CharacterTypes.KendrickLamar's defense: Base of 8 + Role of 2 = 10
+Enemy Warrior deals 0 damage to Your CharacterTypes.KendrickLamar!
 ```
 * The computer then selects one of its characters to attack with and one of your players to attack. We recommend having the computer pick randomly initially but feel free to build your own AI!
 
@@ -55,7 +55,7 @@ Enemy Warrior deals 0 damage to Your Wizard!
 ```java
 Your Team
 --------------------------------------------------------------------
-Orge (1)                Druid (2)               
+Orge (1)                CharacterTypes.Ghostface (2)               
  - Health: 5 / 20       - Health: 1 / 10      
  - Attack: 9             - Attack: 8         
  - Defense: 3            - Defense: 9          
@@ -75,4 +75,4 @@ Warrior (1)
  
 ```
 
-Hint: it will be helpful to use inheritance and polymorphism. Have a class called Character, and have a class called Ogre that extends Character, and so on.
+Hint: it will be helpful to use inheritance and polymorphism. Have a class called CharacterTypes.Characters, and have a class called CharacterTypes.DMX that extends CharacterTypes.Characters, and so on.
