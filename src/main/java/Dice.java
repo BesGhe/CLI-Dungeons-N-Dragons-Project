@@ -11,7 +11,7 @@ public class Dice {
         int roll = Dice.diceRoll();
         int attack = player.attack;
         int sum = roll+attack;
-        System.out.println("Dice roll of " + roll);
+        System.out.println("Attack dice roll of " + roll);
         return sum;
     }
 
@@ -19,7 +19,7 @@ public class Dice {
         int roll = Dice.diceRoll();
         int defense = player.defense;
         int sum = roll+defense;
-        System.out.println("Dice roll of " + roll);
+        System.out.println("Defense dice roll of " + roll);
         return sum;
     }
 }

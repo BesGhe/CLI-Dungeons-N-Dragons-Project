@@ -1,6 +1,6 @@
 # Java-CLI-Dungeons-N-Dragons-Project
 
-![dnd](dd-classes.jpg)
+
 
 
 You will create a Dungeons N Dragons Style game in the command line. The behavior of the game should be as follows:

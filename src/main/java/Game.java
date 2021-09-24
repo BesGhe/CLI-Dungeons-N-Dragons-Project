@@ -77,7 +77,7 @@ public class Game {
         }
 
 
-
+System.exit(0);
 
     }
 
@@ -87,10 +87,7 @@ public class Game {
     }
 
         /*
-        -dice random for both
-        -dice added to the attacker's attack
-        -dice added to defense point
-        -compare
+Math ain't mathing yet
          */
 
 
