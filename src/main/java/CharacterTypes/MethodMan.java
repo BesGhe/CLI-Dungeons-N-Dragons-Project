@@ -5,10 +5,10 @@ public class MethodMan extends Characters{
     public MethodMan(){
         this.name = "MethodMan";
         this.totalHealth = 31;
-        this.currentHealth = 0;
-        this.attack = 10;
-        this.defense = 8;
-        this.speed = 4;
+        this.currentHealth = totalHealth;
+        this.attack = 12;
+        this.defense = 10;
+        this.speed = 6;
     }
 
 
