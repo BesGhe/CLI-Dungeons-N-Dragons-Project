@@ -1,9 +1,5 @@
 import CharacterTypes.*;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Scanner;
-import java.util.Random;
+import java.util.*; //imported a bunch & changes to *
 
 
 public class Game {
@@ -37,26 +33,26 @@ public class Game {
         Characters player1 = listCharacters.get(randomSelect.nextInt(listCharacters.size()));
         Characters player2 = listCharacters.get(randomSelect.nextInt(listCharacters.size()));
         Characters player3 = listCharacters.get(randomSelect.nextInt(listCharacters.size()));
-        System.out.println("1. " + player1 + "2. " + player2 + "3. " + player3);
+        System.out.println("1. " + player1 + "2. " + player2 + "3. " + player3); //show chosen user characters
 
         System.out.println("Your opponent, Bes, has these players:");
         Characters dealer1 = listCharacters.get(randomSelect.nextInt(listCharacters.size()));
         Characters dealer2 = listCharacters.get(randomSelect.nextInt(listCharacters.size()));
         Characters dealer3 = listCharacters.get(randomSelect.nextInt(listCharacters.size()));
-        System.out.println("1. " + dealer1 + "2. " + dealer2 + "3. " + dealer3);
+        System.out.println("1. " + dealer1 + "2. " + dealer2 + "3. " + dealer3); //show chosen dealer characters
 
         Characters[] player3Choices = {player1, player2, player3};
         Characters[] dealer3Choices = {dealer1, dealer2, dealer3};
         //player & dealer's hands after random
 
         System.out.println("Select a player to start with: \n" +
-                "1. " + player1.name + " 2. " + player2.name + " 3. " + player3.name);
+                "1. " + player1.getName() + " 2. " + player2.getName() + " 3. " + player3.getName());
 
         Characters firstDealerPlayer = new Characters();
-        int firstDealer = randomSelect.nextInt(dealer3Choices.length);
-        if(firstDealer<=0){
-            firstDealer = randomSelect.nextInt(dealer3Choices.length);
-        }
+        int firstDealer = randomSelect.nextInt(dealer3Choices.length+1);
+//        if(firstDealer<=0){
+//            firstDealer = randomSelect.nextInt(dealer3Choices.length);
+//        }
 
         Characters firstChosenPlayer = new Characters();
         Characters[] player2Choices;
@@ -77,21 +73,28 @@ public class Game {
                 break;
             //add case if another number is chosen
             default:
-                throw new IllegalStateException("Unexpected value: " + firstPick); //needed to use player2choices[] in checkvitals
+                throw new IllegalStateException("Unexpected value: " + firstPick); //needed to use player2choices[] in checkvitals,             player2Choices changes over time
         }
 
 //make dealer2Choices
         System.out.println("Bes starts with: " + firstDealer);
+        Characters[] dealer2Choices;
+
         switch (firstDealer) {
             case 1:
                 firstDealerPlayer = dealer1;
+                dealer2Choices = new Characters[]{dealer2, dealer3};
                 break;
             case 2:
                 firstDealerPlayer = dealer2;
+                dealer2Choices = new Characters[]{dealer1, dealer3};
                 break;
             case 3:
                 firstDealerPlayer = dealer3;
+                dealer2Choices = new Characters[]{dealer1, dealer2};
                 break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + firstDealer); //needed to use dealer2Choices[] in checkvitals
         }
 
         System.out.println("Let's start the game!\n" +
@@ -119,13 +122,15 @@ public class Game {
                 if (thisSum > 0) {
                     firstDealerPlayer.currentHealth -= thisSum;
                     Printout.goodHit();
+                } else{
+                    Printout.niceTryPlayer();
                 }
                 System.out.println("\nYour current health is: " + firstChosenPlayer.currentHealth +
                         "\nand Bes' current health is: " + firstDealerPlayer.currentHealth + "\n");
 
                 //Characters[] player2choices =  {player1,player2};
                 Characters.checkPlayerVitals(firstChosenPlayer, player2Choices);
-                Characters.checkDealerVitals(firstDealerPlayer, player2Choices);
+                Characters.checkDealerVitals(firstDealerPlayer, dealer2Choices);
                 Printout.enterToContinue();
 
                 //FIRST PLAYER DEFEND
@@ -138,11 +143,13 @@ public class Game {
                 if (thisSum > 0) {
                     firstChosenPlayer.currentHealth -= thisSum;
                     Printout.gotEm();
+                } else{
+                    Printout.niceTryPlayer();
                 }
-                System.out.println("\nYour current health is: " + firstChosenPlayer.currentHealth + "\nand Bes' current health is: " + firstDealerPlayer.currentHealth + "\n");
+                System.out.println("\nYour current health is: " + firstChosenPlayer.currentHealth + "\nand Bes' current health is: "                + firstDealerPlayer.currentHealth + "\n");
 
                 Characters.checkPlayerVitals(firstChosenPlayer, player2Choices);
-                Characters.checkDealerVitals(firstDealerPlayer, player2Choices);
+                Characters.checkDealerVitals(firstDealerPlayer, dealer2Choices);
                 Printout.enterToContinue();
 
 
@@ -161,12 +168,14 @@ public class Game {
                 if (thisSum > 0) {
                     firstChosenPlayer.currentHealth -= thisSum;
                     Printout.goodHit();
+                } else {
+                    Printout.niceTryPlayer();
                 }
                 System.out.println("\nYour current health is: " + firstChosenPlayer.currentHealth +
                         "\nand Bes' current health is: " + firstDealerPlayer.currentHealth + "\n");
 
-                Characters.checkPlayerVitals(firstChosenPlayer,player3Choices);
-                Characters.checkDealerVitals(firstDealerPlayer, player2Choices);
+                Characters.checkPlayerVitals(firstChosenPlayer,player2Choices);
+                Characters.checkDealerVitals(firstDealerPlayer, dealer2Choices);
                 Printout.enterToContinue();
 
 
@@ -183,19 +192,18 @@ public class Game {
                     firstDealerPlayer.currentHealth -= thisSum;
                     Printout.goodHit();
                 }
-                System.out.println("\nYour current health is: " + firstChosenPlayer.currentHealth + "\nand Bes' current health is: " + firstDealerPlayer.currentHealth + "\n");
+                System.out.println("\nYour current health is: " + firstChosenPlayer.currentHealth + "\nand Bes' current health is: "                + firstDealerPlayer.currentHealth + "\n");
 
                 Characters.checkPlayerVitals(firstChosenPlayer, player2Choices);
-                Characters.checkDealerVitals(firstDealerPlayer, player2Choices);
+                Characters.checkDealerVitals(firstDealerPlayer, dealer2Choices);
                 Printout.enterToContinue();
 
             }
         }
-
     }
 
 
+
 //math first, conditionals
-//Math ain't mathing yet
 
 }

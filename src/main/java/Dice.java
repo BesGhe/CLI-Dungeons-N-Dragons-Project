@@ -22,4 +22,6 @@ public class Dice {
         System.out.println("Defense dice roll of " + roll);
         return sum;
     }
+
+
 }
