@@ -1,7 +1,6 @@
 package CharacterTypes;
 
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.*;
 
 public class Characters {
 
@@ -14,38 +13,53 @@ public class Characters {
 
     @Override
     public String toString() {
+
         return name + "'s Stats\n" +
-                "Starting HP: " + currentHealth +
+                "Current HP: " + currentHealth +
                 "\nAttack: " + attack +
                 "\nDefense: " + defense +
                 "\nSpeed: " + speed +
                 "\n\n";
         //how to display char stats
     }
+    Characters[] player2Choices;
+     public static int checkPlayerVitals(Characters player, Characters[] leftovers){
 
-    public String getName() {
-        return name;
-    }
+         Scanner scan = new Scanner(System.in);
+        if (player.currentHealth<=0){
+            System.out.println("Oh no, " + player.name + " is gone!\n" +
+                    "please choose another player" +
+                    Arrays.toString(leftovers));//shows the other 2 characters
+            //how to choose only them
+            int nextCharacter = scan.nextInt();
+        }
+        return player.currentHealth;
+     }
 
-    public int getTotalHealth() {
-        return totalHealth;
+    public static int checkDealerVitals(Characters dealer, Characters[] deadDealer){
+        Scanner scan = new Scanner(System.in);
+        Random randomSelect = new Random();
+        if (dealer.currentHealth<=0){
+            System.out.println("Oh no, " + dealer.name + " is gone!\n" +
+                    "please choose another player" +
+                    Arrays.toString(deadDealer));
+
+            //choose next character
+            // int nextCharacter = randomSelect.nextInt(deadDealer.length);
+
+        }
+        return dealer.currentHealth;
     }
 
     public int getCurrentHealth() {
+
         return currentHealth;
     }
 
-    public int getAttack() {
-        return attack;
+    public Characters[] getPlayer2Choices() {
+        return player2Choices;
     }
 
-    public int getDefense() {
-        return defense;
-    }
-
-    public int getSpeed() {
-        return speed;
-    }
 }
 
 

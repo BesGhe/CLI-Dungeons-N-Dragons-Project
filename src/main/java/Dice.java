@@ -2,10 +2,9 @@ import CharacterTypes.Characters;
 
 public class Dice {
     public static int diceRoll(){
-        int numberOfSides = 10;
+        int numberOfSides = 20; //10?
         int diceRoll = (int)(Math.random()*numberOfSides)+1;
         return diceRoll;
-
     }
 
     public static int sumAttack(Characters player){

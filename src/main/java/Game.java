@@ -1,14 +1,16 @@
-
 import CharacterTypes.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+import java.util.Random;
 
 
 public class Game {
 
 
-
     public static void main(String[] args) {
+
         System.out.println("Welcome to Def Jam Vendetta!\n" +
                 "\n---------------------------------------\n");
 
@@ -50,27 +52,35 @@ public class Game {
         System.out.println("Select a player to start with: \n" +
                 "1. " + player1.name + " 2. " + player2.name + " 3. " + player3.name);
 
-        Characters firstChosenPlayer = new Characters();
-        int firstPick = gameChoices.nextInt();
-        switch (firstPick) {
-            case 1:
-                firstChosenPlayer = player1;
-                break;
-            case 2:
-                firstChosenPlayer = player2;
-                break;
-            case 3:
-                firstChosenPlayer = player3;
-                break;
-            //add case if another number is chosen
-        }
-
         Characters firstDealerPlayer = new Characters();
         int firstDealer = randomSelect.nextInt(dealer3Choices.length);
         if(firstDealer<=0){
             firstDealer = randomSelect.nextInt(dealer3Choices.length);
         }
 
+        Characters firstChosenPlayer = new Characters();
+        Characters[] player2Choices;
+
+        int firstPick = gameChoices.nextInt();
+        switch (firstPick) {
+            case 1:
+                firstChosenPlayer = player1;
+                player2Choices = new Characters[]{player2, player3};
+                break;
+            case 2:
+                firstChosenPlayer = player2;
+                player2Choices = new Characters[]{player1, player3};
+                break;
+            case 3:
+                firstChosenPlayer = player3;
+                player2Choices = new Characters[]{player1, player2};
+                break;
+            //add case if another number is chosen
+            default:
+                throw new IllegalStateException("Unexpected value: " + firstPick); //needed to use player2choices[] in checkvitals
+        }
+
+//make dealer2Choices
         System.out.println("Bes starts with: " + firstDealer);
         switch (firstDealer) {
             case 1:
@@ -92,89 +102,99 @@ public class Game {
         int firstPlayerSpeed = firstChosenPlayer.speed;
         int firstDealerSpeed = firstDealerPlayer.speed;
 
-        if (firstPlayerSpeed >= firstDealerSpeed) {
-            System.out.println("You attack first!\n");
+
+        while(true) {
+            if (firstPlayerSpeed >= firstDealerSpeed) {
+                System.out.println("You attack first!\n");
+
+                //FIRST PLAYER ATTACK
+                int attack = Dice.sumAttack(firstChosenPlayer);
+                int defense = Dice.sumDefense(firstDealerPlayer);
+                firstChosenPlayer.getCurrentHealth();
+                firstDealerPlayer.getCurrentHealth();
+                System.out.println("Your total attack is " + attack);
+                System.out.println("Bes total defense is " + defense);
+                int thisSum = attack - defense;
+                System.out.println("Total damage of...." + thisSum);
+                if (thisSum > 0) {
+                    firstDealerPlayer.currentHealth -= thisSum;
+                    Printout.goodHit();
+                }
+                System.out.println("\nYour current health is: " + firstChosenPlayer.currentHealth +
+                        "\nand Bes' current health is: " + firstDealerPlayer.currentHealth + "\n");
+
+                //Characters[] player2choices =  {player1,player2};
+                Characters.checkPlayerVitals(firstChosenPlayer, player2Choices);
+                Characters.checkDealerVitals(firstDealerPlayer, player2Choices);
+                Printout.enterToContinue();
+
+                //FIRST PLAYER DEFEND
+                attack = Dice.sumAttack(firstDealerPlayer);
+                defense = Dice.sumDefense(firstChosenPlayer);
+                System.out.println("Bes' total attack is " + attack);
+                System.out.println("Your total defense is " + defense);
+                thisSum = attack - defense;
+                System.out.println("Total damage of.... " + thisSum);
+                if (thisSum > 0) {
+                    firstChosenPlayer.currentHealth -= thisSum;
+                    Printout.gotEm();
+                }
+                System.out.println("\nYour current health is: " + firstChosenPlayer.currentHealth + "\nand Bes' current health is: " + firstDealerPlayer.currentHealth + "\n");
+
+                Characters.checkPlayerVitals(firstChosenPlayer, player2Choices);
+                Characters.checkDealerVitals(firstDealerPlayer, player2Choices);
+                Printout.enterToContinue();
 
 
-            //FIRST PLAYER ATTACK
-            int attack = Dice.sumAttack(firstChosenPlayer);
-            int defense = Dice.sumDefense(firstDealerPlayer);
-            firstChosenPlayer.getCurrentHealth();
-            firstDealerPlayer.getCurrentHealth();
-            System.out.println("Your total attack is " + attack);//8-10
-            System.out.println("Bes total defense is " + defense);//10-8
-            int thisSum = attack - defense;
-            System.out.println("Your total damage is " + thisSum);//0+2
-            if (thisSum > 0) {
-                firstDealerPlayer.currentHealth -= thisSum;
-                Printout.goodHit();
+            } else {
+                System.out.println("You're are defending first!\n");
+
+                //FIRST PLAYER DEFEND----
+                int attack = Dice.sumAttack(firstDealerPlayer);
+                int defense = Dice.sumDefense(firstChosenPlayer);
+                firstChosenPlayer.getCurrentHealth();
+                firstDealerPlayer.getCurrentHealth();
+                System.out.println("Bes' total attack is " + attack);
+                System.out.println("Your total defense is " + defense);
+                int thisSum = attack - defense;
+                System.out.println("Bes' total damage is " + thisSum);
+                if (thisSum > 0) {
+                    firstChosenPlayer.currentHealth -= thisSum;
+                    Printout.goodHit();
+                }
+                System.out.println("\nYour current health is: " + firstChosenPlayer.currentHealth +
+                        "\nand Bes' current health is: " + firstDealerPlayer.currentHealth + "\n");
+
+                Characters.checkPlayerVitals(firstChosenPlayer,player3Choices);
+                Characters.checkDealerVitals(firstDealerPlayer, player2Choices);
+                Printout.enterToContinue();
+
+
+                //FIRST PLAYER ATTACK
+                attack = Dice.sumAttack(firstChosenPlayer);
+                defense = Dice.sumDefense(firstDealerPlayer);
+                firstChosenPlayer.getCurrentHealth();
+                firstDealerPlayer.getCurrentHealth();
+                System.out.println("Your total attack is " + attack);
+                System.out.println("Bes total defense is " + defense);
+                thisSum = attack - defense;
+                System.out.println("Your total damage is " + thisSum);
+                if (thisSum > 0) {
+                    firstDealerPlayer.currentHealth -= thisSum;
+                    Printout.goodHit();
+                }
+                System.out.println("\nYour current health is: " + firstChosenPlayer.currentHealth + "\nand Bes' current health is: " + firstDealerPlayer.currentHealth + "\n");
+
+                Characters.checkPlayerVitals(firstChosenPlayer, player2Choices);
+                Characters.checkDealerVitals(firstDealerPlayer, player2Choices);
+                Printout.enterToContinue();
+
             }
-            System.out.println("\nYour current health is: " + firstChosenPlayer.currentHealth + "\nand Bes' current health is: " + firstDealerPlayer.currentHealth + "\n");
-
-            Printout.enterToContinue();
-
-
-            //FIRST PLAYER DEFEND
-            attack = Dice.sumAttack(firstDealerPlayer);
-            defense = Dice.sumDefense(firstChosenPlayer);
-            System.out.println("Bes' total attack is " + attack);//8-10
-            System.out.println("Your total defense is " + defense);//10-8
-            thisSum = attack - defense;
-            System.out.println("Bes' total damage is " + thisSum);//0+2
-            if (thisSum > 0) {
-                firstChosenPlayer.currentHealth -= thisSum;
-                Printout.gotEm();
-            }
-            System.out.println("\nYour current health is: " + firstChosenPlayer.currentHealth + "\nand Bes' current health is: " + firstDealerPlayer.currentHealth + "\n");
-
-            Printout.enterToContinue();
         }
-
-
-
-        else {
-            System.out.println("You're are defending first!\n");
-
-
-            //FIRST PLAYER DEFEND----
-            int attack = Dice.sumAttack(firstDealerPlayer);
-            int defense = Dice.sumDefense(firstChosenPlayer);
-            firstChosenPlayer.getCurrentHealth();
-            firstDealerPlayer.getCurrentHealth();
-            System.out.println("Bes' total attack is " + attack);//8-10
-            System.out.println("Your total defense is " + defense);//10-8
-            int thisSum = attack - defense;
-            System.out.println("Bes' total damage is " + thisSum);//0+2
-            if (thisSum > 0) {
-                firstChosenPlayer.currentHealth -= thisSum;
-                Printout.goodHit();
-            }
-            System.out.println("\nYour current health is: " + firstChosenPlayer.currentHealth + "\nand Bes' current health is: " + firstDealerPlayer.currentHealth + "\n");
-
-            Printout.enterToContinue();
-
-
-            //FIRST PLAYER ATTACK
-            attack = Dice.sumAttack(firstChosenPlayer);
-            defense = Dice.sumDefense(firstDealerPlayer);
-            firstChosenPlayer.getCurrentHealth();
-            firstDealerPlayer.getCurrentHealth();
-            System.out.println("Your total attack is " + attack);//8-10
-            System.out.println("Bes total defense is " + defense);//10-8
-            thisSum = attack - defense;
-            System.out.println("Your total damage is " + thisSum);//0+2
-            if (thisSum > 0) {
-                firstDealerPlayer.currentHealth -= thisSum;
-                Printout.goodHit();
-            }
-            System.out.println("\nYour current health is: " + firstChosenPlayer.currentHealth + "\nand Bes' current health is: " + firstDealerPlayer.currentHealth + "\n");
-
-            Printout.enterToContinue();
-
-        }
-
 
     }
+
+
 //math first, conditionals
 //Math ain't mathing yet
 

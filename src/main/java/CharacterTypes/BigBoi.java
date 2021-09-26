@@ -4,7 +4,7 @@ public class BigBoi extends Characters{
 
     public BigBoi(){
         this.name = "BigBoi";
-        this.totalHealth = 30;
+        this.totalHealth = 20;
         this.currentHealth = totalHealth;
         this.attack = 7;
         this.defense = 8;
