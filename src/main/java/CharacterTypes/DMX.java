@@ -4,11 +4,11 @@ public class DMX extends Characters {
 
     public DMX(){
         this.setName("DMX");
-        this.totalHealth = 27;
-        this.currentHealth = totalHealth;
-        this.attack = 7;
-        this.defense = 9;
-        this.speed = 4;
+        this.setTotalHealth(27);
+        this.currentHealth = getTotalHealth();
+        this.setAttack(7);
+        this.setDefense(9);
+        this.setSpeed(4);
 
     }
 

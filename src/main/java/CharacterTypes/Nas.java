@@ -4,11 +4,11 @@ public class Nas extends Characters {
 
     public Nas(){
         this.setName("Nas");
-        this.totalHealth = 25;
-        this.currentHealth = totalHealth;
-        this.attack = 9;
-        this.defense = 7;
-        this.speed = 4;
+        this.setTotalHealth(25);
+        this.currentHealth = getTotalHealth();
+        this.setAttack(9);
+        this.setDefense(7);
+        this.setSpeed(4);
 
     }
 

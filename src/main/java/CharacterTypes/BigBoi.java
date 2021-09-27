@@ -4,11 +4,11 @@ public class BigBoi extends Characters{
 
     public BigBoi(){
         this.setName("Big Boi");
-        this.totalHealth = 20;
-        this.currentHealth = totalHealth;
-        this.attack = 7;
-        this.defense = 8;
-        this.speed = 6;
+        this.setTotalHealth(20);
+        this.currentHealth = getTotalHealth();
+        this.setAttack(7);
+        this.setDefense(8);
+        this.setSpeed(6);
 
     }
 

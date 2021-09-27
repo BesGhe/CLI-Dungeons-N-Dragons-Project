@@ -35,11 +35,13 @@ public class Game {
         Characters player3 = listCharacters.get(randomSelect.nextInt(listCharacters.size()));
         System.out.println("1. " + player1 + "2. " + player2 + "3. " + player3); //show chosen user characters
 
+
         System.out.println("Your opponent, Bes, has these players:");
         Characters dealer1 = listCharacters.get(randomSelect.nextInt(listCharacters.size()));
         Characters dealer2 = listCharacters.get(randomSelect.nextInt(listCharacters.size()));
         Characters dealer3 = listCharacters.get(randomSelect.nextInt(listCharacters.size()));
         System.out.println("1. " + dealer1 + "2. " + dealer2 + "3. " + dealer3); //show chosen dealer characters
+
 
         Characters[] player3Choices = {player1, player2, player3};
         Characters[] dealer3Choices = {dealer1, dealer2, dealer3};
@@ -49,10 +51,10 @@ public class Game {
                 "1. " + player1.getName() + " 2. " + player2.getName() + " 3. " + player3.getName());
 
         Characters firstDealerPlayer = new Characters();
-        int firstDealer = randomSelect.nextInt(dealer3Choices.length+1);
-//        if(firstDealer<=0){
-//            firstDealer = randomSelect.nextInt(dealer3Choices.length);
-//        }
+        int firstDealer = randomSelect.nextInt(dealer3Choices.length);
+        if(firstDealer==0){
+            firstDealer = randomSelect.nextInt(dealer3Choices.length);
+        }
 
         Characters firstChosenPlayer = new Characters();
         Characters[] player2Choices;
@@ -102,8 +104,8 @@ public class Game {
                 "\n---------------------------------------");
 
         //COMPARE PLAYER SPEEDS
-        int firstPlayerSpeed = firstChosenPlayer.speed;
-        int firstDealerSpeed = firstDealerPlayer.speed;
+        int firstPlayerSpeed = firstChosenPlayer.getSpeed();
+        int firstDealerSpeed = firstDealerPlayer.getSpeed();
 
 
         while(true) {
@@ -197,7 +199,7 @@ public class Game {
                 Characters.checkPlayerVitals(firstChosenPlayer, player2Choices);
                 Characters.checkDealerVitals(firstDealerPlayer, dealer2Choices);
                 Printout.enterToContinue();
-
+            Characters nextDealer = dealer2Choices[0]; //next dealer character when needed. finish after presentation
             }
         }
     }

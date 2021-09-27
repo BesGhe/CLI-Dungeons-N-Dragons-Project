@@ -3,12 +3,12 @@ package CharacterTypes;
 public class KanyeWest extends Characters{
 
     public KanyeWest() {
-        this.setName("KanyeWest");
-        this.totalHealth = 25;
-        this.currentHealth = totalHealth;
-        this.attack = 9;
-        this.defense = 8;
-        this.speed = 7;
+        this.setName("Kanye West");
+        this.setTotalHealth(25);
+        this.currentHealth = getTotalHealth();
+        this.setAttack(9);
+        this.setDefense(8);
+        this.setSpeed(7);
 
 
     }

@@ -8,11 +8,11 @@ import static java.lang.reflect.Array.get;
 public class Characters {
 
     private String name;
-    public int totalHealth;
+    private int totalHealth;
     public int currentHealth = totalHealth;
-    public int attack;
-    public int defense;
-    public int speed;
+    private int attack;
+    private int defense;
+    private int speed;
 
 
     Characters[] player2Choices;
@@ -43,6 +43,9 @@ public class Characters {
         return player.currentHealth;
     }
 
+    Characters dealer;
+    Characters[] deadDealer;
+
     public static int checkDealerVitals(Characters dealer, Characters[] deadDealer){
 
         Scanner scan = new Scanner(System.in);
@@ -50,28 +53,57 @@ public class Characters {
 
         int dealerHere = randomSelect.nextInt(deadDealer.length); //randomly choose next character
         if (dealer.currentHealth<=0){
+            dealer = deadDealer[0];
             System.out.println("Oh no, " + dealer.getName() + " is gone!\n" +
                     "I will choose another player:\n" +
-                    Arrays.toString(deadDealer) + "CHOICE>>" + Array.get(deadDealer, dealerHere));//show leftover characters & then                     choice characters
+                    dealer);//show leftover characters & then choose characters
+            return dealer.currentHealth;
         }
         return dealer.currentHealth;
     }
 
 
     public int getCurrentHealth() {
-
         return currentHealth;
     }
 
-
     public String getName() {
-
         return name;
     }
 
-
     public void setName(String name) {
-
         this.name = name;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public int getTotalHealth() {
+        return totalHealth;
+    }
+
+    public void setTotalHealth(int totalHealth) {
+        this.totalHealth = totalHealth;
+    }
+
+    public int getAttack() {
+        return attack;
+    }
+
+    public void setAttack(int attack) {
+        this.attack = attack;
+    }
+
+    public int getDefense() {
+        return defense;
+    }
+
+    public void setDefense(int defense) {
+        this.defense = defense;
     }
 }

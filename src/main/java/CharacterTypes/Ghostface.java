@@ -4,11 +4,11 @@ public class Ghostface extends Characters {
 
     public Ghostface(){
         this.setName("Ghostface");
-        this.totalHealth = 30;
-        this.currentHealth = totalHealth;
-        this.attack = 9;
-        this.defense = 9;
-        this.speed = 5;
+        this.setTotalHealth(30);
+        this.currentHealth = getTotalHealth();
+        this.setAttack(9);
+        this.setDefense(9);
+        this.setSpeed(5);
 
     }
 

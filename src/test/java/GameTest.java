@@ -1,10 +1,16 @@
 import org.junit.Test;
 
 public class GameTest {
+    @Test
+    public void main() {
+    }
 
 /*
 @Test
 picking teams
+//Given
+//When
+//Actual
 expected
 actual
 
