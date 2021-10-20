@@ -1,6 +1,6 @@
 package CharacterTypes;
 
-public class ChildishGambino extends Characters{
+public class ChildishGambino extends Character {
 
     public ChildishGambino(){
         this.setName("Childish Gambino");

@@ -1,6 +1,6 @@
 package CharacterTypes;
 
-public class MethodMan extends Characters{
+public class MethodMan extends Character {
 
     public MethodMan(){
         this.setName("MethodMan");

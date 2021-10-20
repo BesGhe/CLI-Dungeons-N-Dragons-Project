@@ -4,12 +4,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
-public class CharactersTest {
+public class CharacterTest {
 
     //initialize variables first
-Characters testCharacter;
+Character testCharacter;
 //Characters [] testArray;
 //Characters tester1;
 //Characters tester2;
@@ -19,7 +17,7 @@ Characters testCharacter;
     @Before
     //can be created with test class or Generate
     public void setUp() throws Exception {
-        testCharacter = new Characters();
+        testCharacter = new Character();
 testCharacter.setName("Test Character");
 
     }

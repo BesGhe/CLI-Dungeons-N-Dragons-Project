@@ -75,4 +75,4 @@ Warrior (1)
  
 ```
 
-Hint: it will be helpful to use inheritance and polymorphism. Have a class called CharacterTypes.Characters, and have a class called CharacterTypes.DMX that extends CharacterTypes.Characters, and so on.
+Hint: it will be helpful to use inheritance and polymorphism. Have a class called CharacterTypes.Character, and have a class called CharacterTypes.DMX that extends CharacterTypes.Character, and so on.

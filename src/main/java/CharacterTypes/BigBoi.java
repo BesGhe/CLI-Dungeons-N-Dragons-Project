@@ -1,6 +1,6 @@
 package CharacterTypes;
 
-public class BigBoi extends Characters{
+public class BigBoi extends Character {
 
     public BigBoi(){
         this.setName("Big Boi");

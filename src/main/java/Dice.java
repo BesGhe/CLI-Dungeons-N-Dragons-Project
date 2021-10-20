@@ -1,4 +1,4 @@
-import CharacterTypes.Characters;
+import CharacterTypes.Character;
 
 public class Dice {
     public static int diceRoll(int numberOfSides){
@@ -10,7 +10,7 @@ public class Dice {
         return diceRoll;
     }
 
-    public static int sumAttack(Characters player){
+    public static int sumAttack(Character player){
         int roll = Dice.diceRoll(15);
         int attack = player.getAttack();
         int sum = roll+attack;
@@ -18,7 +18,7 @@ public class Dice {
         return sum;
     }
 
-    public static int sumDefense(Characters player){
+    public static int sumDefense(Character player){
         int roll = Dice.diceRoll(10);
         int defense = player.getDefense();
         int sum = roll+defense;

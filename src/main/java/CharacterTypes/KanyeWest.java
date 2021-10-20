@@ -1,6 +1,6 @@
 package CharacterTypes;
 
-public class KanyeWest extends Characters{
+public class KanyeWest extends Character {
 
     public KanyeWest() {
         this.setName("Kanye West");

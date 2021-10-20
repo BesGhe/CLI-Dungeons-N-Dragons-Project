@@ -1,11 +1,8 @@
 package CharacterTypes;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
-import static java.lang.reflect.Array.get;
-
-public class Characters {
+public class Character {
 
     private String name;
     private int totalHealth;
@@ -15,7 +12,7 @@ public class Characters {
     private int speed;
 
 
-    Characters[] player2Choices;
+    Character[] player2Choices;
 
     @Override
     public String toString() {
@@ -29,7 +26,7 @@ public class Characters {
         //how to display char stats
     }
 
-    public static int checkPlayerVitals(Characters player, Characters[] leftovers){
+    public static int checkPlayerVitals(Character player, Character[] leftovers){
 
         Scanner scan = new Scanner(System.in);
 
@@ -43,10 +40,10 @@ public class Characters {
         return player.currentHealth;
     }
 
-    Characters dealer;
-    Characters[] deadDealer;
+    Character dealer;
+    Character[] deadDealer;
 
-    public static int checkDealerVitals(Characters dealer, Characters[] deadDealer){
+    public static int checkDealerVitals(Character dealer, Character[] deadDealer){
 
         Scanner scan = new Scanner(System.in);
         Random randomSelect = new Random();

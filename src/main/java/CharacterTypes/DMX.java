@@ -1,6 +1,6 @@
 package CharacterTypes;
 
-public class DMX extends Characters {
+public class DMX extends Character {
 
     public DMX(){
         this.setName("DMX");

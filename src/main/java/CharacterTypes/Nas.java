@@ -1,6 +1,6 @@
 package CharacterTypes;
 
-public class Nas extends Characters {
+public class Nas extends Character {
 
     public Nas(){
         this.setName("Nas");

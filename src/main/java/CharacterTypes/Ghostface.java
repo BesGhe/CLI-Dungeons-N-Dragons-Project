@@ -1,6 +1,6 @@
 package CharacterTypes;
 
-public class Ghostface extends Characters {
+public class Ghostface extends Character {
 
     public Ghostface(){
         this.setName("Ghostface");
